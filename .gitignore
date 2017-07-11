@@ -1,0 +1,9 @@
+/.idea
+/.vscode
+node_modules
+/typings
+/public
+npm-debug.log
+file.log
+/client/app/**/*.js
+/client/app/**/*.js.map

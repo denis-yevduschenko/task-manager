@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ./partials/head %>
+    <script>
+        System.import('app').catch(function(err){ console.error(err); });
+    </script>
+</head>
+<body>
+    <my-app>
+        <div class="cssload-thecube">
+            <div class="cssload-cube cssload-c1"></div>
+            <div class="cssload-cube cssload-c2"></div>
+            <div class="cssload-cube cssload-c4"></div>
+            <div class="cssload-cube cssload-c3"></div>
+        </div>
+    </my-app>
+</body>
+<footer>
+    <% include ./partials/footer %>
+</footer>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+</html>
