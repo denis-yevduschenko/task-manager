@@ -17,12 +17,14 @@ router.post('/register', function (req, res, next) {
     req.checkBody('email', 'Email is required').notEmpty();
     req.checkBody('email', 'Email is not valid').isEmail();
     req.checkBody('username', 'Username is required').notEmpty();
+    req.checkBody('username', 'Username must be at least 5 characters').len(5, 30);
     req.checkBody('password', 'Password is required').notEmpty();
+    req.checkBody('password', 'Password must be at least 6 characters').len(6, 30);
     req.checkBody('confirm', 'Passwords do not match').equals(password);
 
     req.getValidationResult().then(function(result) {
         if(!result.isEmpty()){
-            res.status(400).send('There have been validation errors: ' + util.inspect(result.array()));
+            res.json(JSON.stringify(result.array()));
         } else {
             var newUser = new User({
                 name:name,

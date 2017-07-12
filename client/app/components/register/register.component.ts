@@ -16,12 +16,12 @@ export class RegisterComponent {
     username: string;
     password: string;
     confirm: string;
+    messages: string;
 
     addUser(event: any) {
         event.preventDefault();
-        console.log(this);
 
-        var newUser: User = {
+        let newUser: User = {
             _id: null,
             name: this.name,
             email: this.email,
@@ -31,8 +31,12 @@ export class RegisterComponent {
         };
 
         this.userService.addUser(newUser).subscribe(saved => {
-            console.log(saved);
-            this.router.navigate(['/task']);
+            if (typeof saved === "string") {
+                this.messages = JSON.parse(saved);
+            }
+            if (typeof saved === "object") {
+                this.router.navigate(['/task']);
+            }
         });
     }
 

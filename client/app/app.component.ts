@@ -18,6 +18,12 @@ export class AppComponent {
         }
     }
 
+    ngOnInit(){
+        this.userService.newUser.subscribe(
+            user => this.user = user
+        )
+    }
+
     logout(){
         this.userService.logout();
         this.router.navigate(['login']);

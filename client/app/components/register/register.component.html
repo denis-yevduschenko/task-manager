@@ -1,8 +1,15 @@
 <div class="container">
     <div class="row main">
-        <div class="main-login main-center">
+        <div class="main-register col-xs-12 col-sm-8 col-sm-offset-2 col-lg-6 col-lg-offset-3">
             <h1>Register Form</h1>
             <h5>Sign up once and create any number of tasks.</h5>
+            <div class="alert alert-info" *ngIf="messages">
+                <ul>
+                    <li *ngFor="let message of messages">
+                        {{ message.msg }}
+                    </li>
+                </ul>
+            </div>
             <form #f="ngForm" (ngSubmit)="addUser($event)">
                 <div class="form-group">
                     <label for="name" class="cols-sm-2 control-label">Your Name</label>
@@ -29,7 +36,7 @@
                     <div class="cols-sm-10">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-                            <input type="text" class="form-control" name="username" id="username" [(ngModel)]="username" placeholder="Enter your Username"/>
+                            <input type="text" class="form-control" name="username" id="username" [(ngModel)]="username" placeholder="Enter your Username" maxlength="30"/>
                         </div>
                     </div>
                 </div>
@@ -39,7 +46,7 @@
                     <div class="cols-sm-10">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                            <input type="password" class="form-control" name="password" id="password" [(ngModel)]="password" placeholder="Enter your Password"/>
+                            <input type="password" class="form-control" name="password" id="password" [(ngModel)]="password" placeholder="Enter your Password" maxlength="30"/>
                         </div>
                     </div>
                 </div>
@@ -49,7 +56,7 @@
                     <div class="cols-sm-10">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                            <input type="password" class="form-control" name="confirm" id="confirm" [(ngModel)]="confirm" placeholder="Confirm your Password"/>
+                            <input type="password" class="form-control" name="confirm" id="confirm" [(ngModel)]="confirm" placeholder="Confirm your Password" maxlength="30"/>
                         </div>
                     </div>
                 </div>
