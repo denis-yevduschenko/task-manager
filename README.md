@@ -1,8 +1,9 @@
 # Task Manager System
 
-Run App:
+First Run App:
 ```
 npm i
+cd client && npm i
 npm i typescript -g (if it needs)
 mongod
 cd client/app && tsc
