@@ -1,7 +1,12 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+let mongoose = require('mongoose');
+let Schema = mongoose.Schema;
+let autoIncrement = require('mongoose-auto-increment');
+const config = require('../config/database');
 
-var user = new Schema({
+const connection = mongoose.createConnection(config.database);
+autoIncrement.initialize(connection);
+
+let user = new Schema({
     name : {
         type: String,
         required: true
@@ -16,8 +21,11 @@ var user = new Schema({
     },
     password: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     }
 });
 
-module.exports = mongoose.model('User', user);
+user.plugin(autoIncrement.plugin, 'User');
+
+module.exports = connection.model('User', user);
