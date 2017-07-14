@@ -9,11 +9,12 @@ import { FormsModule} from '@angular/forms';
 import { routes } from './app.router';
 import {LoginComponent} from "./components/login/login.component";
 import {ProfileComponent} from "./components/profile/profile.component";
+import {TaskDetailComponent} from "./components/task-detail/task-detail.component";
 
 
 @NgModule({
     imports: [BrowserModule, HttpModule, FormsModule, routes],
-    declarations: [AppComponent, TasksComponent, PieComponent, RegisterComponent, LoginComponent, ProfileComponent],
+    declarations: [AppComponent, TasksComponent, PieComponent, RegisterComponent, LoginComponent, ProfileComponent, TaskDetailComponent],
     bootstrap: [AppComponent]
 })
 export class AppModule { 

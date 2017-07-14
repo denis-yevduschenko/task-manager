@@ -1,0 +1,30 @@
+<link href="https://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet">
+
+<div class="container">
+    <div class="sticky col-xs-12 col-sm-8 col-sm-offset-2" *ngIf="task">
+        <h1>{{task.title}}</h1>
+        <p><small>{{task.description}}</small></p>
+        <p>Status: {{task.status}}</p>
+        <div>
+            <label>author: </label>
+            <p>{{task.author_name}}</p>
+        </div>
+        <div>
+            <label>assignee: </label>
+            <p>{{task.assignee_name}}</p>
+        </div>
+        <div>
+            <label>created_at: </label>
+            <p>{{task.created_at}}</p>
+        </div>
+
+        <div>
+            <label>deadline: </label>
+            <p>{{task.deadline}}</p>
+        </div>
+        <div *ngIf="task.sub_task">
+            <label>sub_task: </label>
+            <p>{{task.sub_task}}</p>
+        </div>
+    </div>
+</div>

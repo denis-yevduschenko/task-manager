@@ -8,6 +8,7 @@ const passport = require('passport');
 
 const index = require('./routes/index');
 const tasks = require('./routes/tasks');
+const myTasks = require('./routes/myTasks');
 const users = require('./routes/users');
 
 const port = process.env.PORT || 3000;
@@ -58,6 +59,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/', index);
 //REST API
 app.use('/api', tasks);
+app.use('/tasks', myTasks);
 app.use('/users', users);
 
 

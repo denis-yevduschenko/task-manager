@@ -3,12 +3,13 @@ import {TaskService} from './services/task.services'
 import {UserService} from "./services/user.services";
 import {Router} from "@angular/router";
 import {User} from "./Models/User";
+import {MyTaskService} from "./services/myTask.service";
 
 @Component({
     moduleId:module.id,
     selector: 'my-app',
     templateUrl: 'app.component.html',
-    providers:[TaskService, UserService]
+    providers:[TaskService, UserService, MyTaskService]
 })
 export class AppComponent {
     public user: User;
