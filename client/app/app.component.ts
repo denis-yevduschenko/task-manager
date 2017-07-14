@@ -9,7 +9,7 @@ import {MyTaskService} from "./services/myTask.service";
     moduleId:module.id,
     selector: 'my-app',
     templateUrl: 'app.component.html',
-    providers:[TaskService, UserService, MyTaskService]
+    providers:[TaskService, UserService]
 })
 export class AppComponent {
     public user: User;

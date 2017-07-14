@@ -20,6 +20,11 @@ export class TaskService {
             });
     }
 
+    getTask(id: number){
+        return this.http.get('/api/task/' + id)
+            .map(res => res.json());
+    }
+
     addTask(newTask: Task) {
         var headers = new Headers();
         headers.append("Content-Type", "application/json");
