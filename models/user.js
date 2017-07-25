@@ -23,6 +23,9 @@ let user = new Schema({
         type: String,
         required: true,
         unique: true
+    },
+    auth_token: {
+        type: String
     }
 });
 

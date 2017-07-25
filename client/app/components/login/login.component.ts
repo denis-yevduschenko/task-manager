@@ -24,8 +24,13 @@ export class LoginComponent {
         };
 
         this.userService.auth(data).subscribe(user => {
-            localStorage.setItem("user", JSON.stringify(user));
-            this.userService.loginUser(JSON.parse(localStorage.getItem("user")));
+            let localUser = {
+                "name": user.name,
+                "token": user.auth_token,
+                "email": user.email
+            };
+            localStorage.setItem("user", JSON.stringify(localUser));
+            this.userService.loginUser(user);
             this.router.navigate(['/task']);
         },
         err => {

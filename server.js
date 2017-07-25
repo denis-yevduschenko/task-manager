@@ -5,10 +5,14 @@ const mongoose = require('mongoose');
 const expressValidator = require('express-validator');
 const config = require('./config/database');
 const passport = require('passport');
+const cookieParser = require('cookie-parser');
 
 const index = require('./routes/index');
 const tasks = require('./routes/tasks');
 const users = require('./routes/users');
+
+const auth = require('./middleware/auth');
+const isAuth = require('./middleware/isAuth');
 
 const port = process.env.PORT || 3000;
 const app = express();
@@ -54,10 +58,13 @@ app.use(staticFilesPath);
 //Body Parse MD
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+//Authenticated
+app.use(auth);
 //Entry point
 app.use('/', index);
 //REST API
-app.use('/api', tasks);
+app.use('/api', isAuth, tasks);
 app.use('/users', users);
 
 

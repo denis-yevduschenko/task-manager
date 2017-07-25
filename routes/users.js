@@ -3,6 +3,7 @@ const util = require('util');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
+const config = require('../config/database');
 
 let User = require('../models/user');
 
@@ -26,11 +27,12 @@ router.post('/register', function (req, res, next) {
         if(!result.isEmpty()){
             res.json(JSON.stringify(result.array()));
         } else {
-            var newUser = new User({
+            let newUser = new User({
                 name:name,
                 email:email,
                 username:username,
-                password:password
+                password:password,
+                auth_token:bcrypt.hashSync(password + config.secret)
             });
 
             bcrypt.genSalt(10, function(err, salt){
@@ -58,7 +60,8 @@ router.post('/login',
     function(req, res){
         // If this function gets called, authentication was successful.
         // `req.user` contains the authenticated user.
-        res.json( req.user);
+        res.cookie('token', req.user.auth_token, {expires: new Date(Date.now() + 30*24*60*60*1000), httpOnly: true});
+        res.json(req.user);
     }
 );
 
