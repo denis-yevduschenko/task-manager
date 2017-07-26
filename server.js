@@ -25,7 +25,6 @@ app.set('views', path.join(__dirname, 'views'));
 
 app.set('view engine', 'ejs');
 
-
 // Express Validator Middleware
 app.use(expressValidator({
     errorFormatter: function(param, msg, value) {

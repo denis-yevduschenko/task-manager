@@ -29,6 +29,9 @@ export class TaskDetailComponent implements OnInit{
                 this.task = task[0];
                 this.task.created_at = new Date(this.task.created_at);
                 this.task.deadline = new Date(this.task.deadline);
+            },
+            error => {
+                this.router.navigate(['error'], { queryParams: { err: error } });
             })
     }
 }

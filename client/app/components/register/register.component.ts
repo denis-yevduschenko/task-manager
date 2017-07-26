@@ -37,6 +37,9 @@ export class RegisterComponent {
             if (typeof saved === "object") {
                 this.router.navigate(['/task']);
             }
+        },
+        error => {
+            this.router.navigate(['error'], { queryParams: { err: error } });
         });
     }
 

@@ -10,11 +10,13 @@ import { routes } from './app.router';
 import {LoginComponent} from "./components/login/login.component";
 import {ProfileComponent} from "./components/profile/profile.component";
 import {TaskDetailComponent} from "./components/task-detail/task-detail.component";
+import {ErrorComponent} from "./components/error/error.component";
 
 
 @NgModule({
     imports: [BrowserModule, HttpModule, FormsModule, routes],
-    declarations: [AppComponent, TasksComponent, PieComponent, RegisterComponent, LoginComponent, ProfileComponent, TaskDetailComponent],
+    declarations: [AppComponent, TasksComponent, PieComponent, RegisterComponent, LoginComponent,
+                    ProfileComponent, TaskDetailComponent, ErrorComponent],
     bootstrap: [AppComponent]
 })
 export class AppModule { 

@@ -6,13 +6,12 @@ module.exports = function auth(req, res, next) {
         let query = {auth_token: cookieToken};
         User.findOne(query, function (err, user) {
             if(err) throw err;
-            if (user){
+            if (user) {
                 req.user = user;
-                next();
-            } else {
-                next();
             }
+            next();
         })
+    } else {
+        next();
     }
-
 };

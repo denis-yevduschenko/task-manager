@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TaskService} from './services/task.services'
 import {UserService} from "./services/user.services";
 import {Router} from "@angular/router";
@@ -11,7 +11,7 @@ import {MyTaskService} from "./services/myTask.service";
     templateUrl: 'app.component.html',
     providers:[TaskService, UserService]
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
     public user: User;
     constructor (private userService: UserService, private router: Router){
         if (localStorage.getItem("user")) {

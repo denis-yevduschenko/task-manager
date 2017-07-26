@@ -25,6 +25,9 @@ export class TasksComponent {
                 task.isDone = !task.isDone;
                 console.log('updated inside tasks component');
                 this.taskService.tasksUpdated.emit(this.tasks);
+            },
+            error => {
+                this.router.navigate(['error'], { queryParams: { err: error } });
             })
     }
 
@@ -45,6 +48,9 @@ export class TasksComponent {
                 this.tasks.push(savedTask);
                 this.title = '';
                 this.taskService.tasksUpdated.emit(this.tasks);
+            },
+            error => {
+                this.router.navigate(['error'], { queryParams: { err: error } });
             })
 
     }
@@ -59,6 +65,9 @@ export class TasksComponent {
                     }
                 }
             }
+        },
+        error => {
+            this.router.navigate(['error'], { queryParams: { err: error } });
         });
 
     }
@@ -88,6 +97,9 @@ export class TasksComponent {
                 console.log(tasks);
                 this.tasks = tasks;
                 this.taskService.tasksUpdated.emit(this.tasks);
+            },
+            error => {
+                this.router.navigate(['login']);
             });
     }
 }
