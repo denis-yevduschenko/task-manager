@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var mongojs = require('mongojs');
-var db = mongojs('mongodb://bumbeishvili:sklerozi@ds157268.mlab.com:57268/bumbeishvili-tasklist', ['tasks']);
+var db = mongojs('mongodb://zavitova:zavitushochka12@ds023373.mlab.com:23373/mytasklistzavitova', ['tasks']);
 
 //Get all tasks
 router.get('/tasks', function (req, resp, next) {
@@ -76,6 +76,14 @@ router.put('/tasks/:id', function (req, resp, next) {
     if (task.title) {
         updatedTask.title = task.title;
     }
+
+    if (task.detail) {
+        updatedTask.detail = task.detail;
+    }
+    if (task.implementer) {
+        updatedTask.implementer = task.implementer;
+    }
+
     console.log(updatedTask);
     if (!updatedTask) {
         resp.status(400);

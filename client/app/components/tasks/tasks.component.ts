@@ -17,6 +17,8 @@ export class TasksComponent {
         var _task = {
             _id: task._id,
             title: task.title,
+            detail: task.detail,
+            implementer: task.implementer,
             isDone: !task.isDone
         }
 
@@ -40,6 +42,8 @@ export class TasksComponent {
         var newTask: Task = {
             _id: null,
             title: this.title,
+            detail: this.detail,
+            implementer: this.implementer,
             isDone: false
         }
 
@@ -47,6 +51,8 @@ export class TasksComponent {
             .subscribe(savedTask => {
                 this.tasks.push(savedTask);
                 this.title = '';
+                this.detail = '';
+                this.implementer = '';
                 this.taskService.tasksUpdated.emit(this.tasks);
             },
             error => {
@@ -77,20 +83,6 @@ export class TasksComponent {
     }
 
     constructor(private taskService: TaskService, private router: Router) {
-        // this.tasks = [
-        //     {
-        //         "title": "Walk the dog",
-        //         "isDone": false
-        //     },
-        //     {
-        //         "title": "Go to shopping",
-        //         "isDone": false
-        //     },
-        //     {
-        //         "title": "Go out for dinner",
-        //         "isDone": false
-        //     }
-        // ]
         this.taskService
             .getTasks()
             .subscribe(tasks => {

@@ -1,22 +1,48 @@
 <pie></pie>
+<div class="main" id="">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <h3>Tasks management system</h3>
+                <form class="well" >
+                    <div class="form-group col-xs-12">
+                        <input name="test" type="text" [(ngModel)]="title" class="form-control" placeholder="add text">
+                    </div>
+                    <br><br>
+                    <div class="form-group col-xs-12">
+                        <input name="test" type="text" [(ngModel)]="detail"  class="form-control" placeholder="detail">
+                    </div>
+                    <br><br>
+                    <div class="form-group col-xs-12">
+                        <input name="test" type="text" [(ngModel)]="implementer"  class="form-control" placeholder="implementer">
+                    </div>
+                    <br><br>
+                    <div class="col-xs-4">
+                        <input type="button" (click)="addTask($event)" value="add task" class="btn btn-danger">
+                    </div>
+                </form>
 
-<form class="well" (submit)="addTask($event)">
-    <div class="form-group">
-        <input name="test" type="text" [(ngModel)]="title" class="form-control" placeholder="add text">
-    </div>
-</form>
-
-<div class="task-list">
-    <div *ngFor='let task of tasks'>
-        <br><br>
-        <div class="col-xs-1">
-            <input type="checkbox" [checked]="task.isDone" (click)="updateStatus(task)">
-        </div>
-        <div class="col-xs-7">
-            {{task.title}}
-        </div>
-        <div class="col-xs-4">
-            <input type="button" (click)="deleteTask(task._id)" value="delete" class="btn btn-danger">
+                <div class="task-list">
+                    <div *ngFor='let task of tasks'>
+                        <br><br>
+                        <div class="col-xs-1">
+                            <input type="checkbox" [checked]="task.isDone" (click)="updateStatus(task)">
+                        </div>
+                        <div class="col-xs-2">
+                            <input type="text" value={{task.title}} >
+                        </div>
+                        <div class="col-xs-4">
+                            <input type="text" value={{task.detail}} >
+                        </div>
+                        <div class="col-xs-3">
+                            <input type="text" value= {{task.implementer}}>
+                        </div>
+                        <div class="col-xs-1">
+                            <input type="button" (click)="deleteTask(task._id)" value="delete" class="btn btn-danger">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

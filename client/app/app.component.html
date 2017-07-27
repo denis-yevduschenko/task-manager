@@ -12,17 +12,16 @@
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
                     <li routerLinkActive="active"><a href="../">Home</a></li>
-                    <li routerLinkActive="active"><a routerLink="profile">Profile</a></li>
+                    <li routerLinkActive="active"><a routerLink="team">Profile</a></li>
                     <li routerLinkActive="active"><a routerLink="register">Register</a></li>
                     <li routerLinkActive="active" *ngIf="!user"><a routerLink="login">Login</a></li>
                     <li *ngIf="user"><a (click)="logout()" style="cursor: pointer;">Log Out ({{user.name}})</a></li>
                     <li routerLinkActive="active"><a routerLink="task">Tasks</a></li>
-                    <li><a [routerLink]="['/detail', 1]">Task 1</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 </div>
-<div class='container' style="margin-top: 70px;">
+<div class='container' style="margin-top: 70px; margin-bottom: 70px;">
     <router-outlet></router-outlet>
 </div>
