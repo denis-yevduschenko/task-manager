@@ -4,38 +4,72 @@
         <div class="row">
             <div class="col-sm-12 text-center">
                 <h3>Tasks management system</h3>
-                <form class="well" >
-                    <div class="form-group col-xs-12">
-                        <input name="test" type="text" [(ngModel)]="title" class="form-control" placeholder="add text">
+                <form class="form-horizontal well">
+                    <div class="form-group">
+                        <label class="control-label col-xs-2" for="title">Title:</label>
+                        <div class="col-xs-10">
+                            <input name="test" type="text" [(ngModel)]="title" class="form-control" placeholder="add text" id="title">
+                        </div>
                     </div>
-                    <br><br>
-                    <div class="form-group col-xs-12">
-                        <input name="test" type="text" [(ngModel)]="detail"  class="form-control" placeholder="detail">
+                    <div class="form-group">
+                        <label class="control-label col-xs-2" for="desc">Description:</label>
+                        <div class="col-xs-10">
+                            <textarea name="test" [(ngModel)]="description"  class="form-control" placeholder="detail" id="desc"></textarea>
+                        </div>
                     </div>
-                    <br><br>
-                    <div class="form-group col-xs-12">
-                        <input name="test" type="text" [(ngModel)]="implementer"  class="form-control" placeholder="implementer">
+                    <div class="form-group">
+                        <label class="control-label col-xs-2" for="assignee">Assignee:</label>
+                        <div class="col-xs-10">
+                            <input name="test" type="text" [(ngModel)]="assignee"  class="form-control" placeholder="implementer" id="assignee">
+                        </div>
                     </div>
-                    <br><br>
-                    <div class="col-xs-4">
+                    <div class="form-group">
+                        <label class="control-label col-xs-2" for="deadline">Deadline:</label>
+                        <div class="col-xs-10">
+                            <input name="test" type="text" [(ngModel)]="deadline"  class="form-control" placeholder="deadline" id="deadline">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-2" for="sub_task">Sub task:</label>
+                        <div class="col-xs-10">
+                            <input name="test" type="text" [(ngModel)]="sub_task"  class="form-control" placeholder="Id sub task" id="sub_task">
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <input type="button" (click)="addTask($event)" value="add task" class="btn btn-danger">
                     </div>
+                    <br>
                 </form>
 
                 <div class="task-list">
-                    <div *ngFor='let task of tasks'>
+                    <div>
                         <br><br>
-                        <div class="col-xs-1">
-                            <input type="checkbox" [checked]="task.isDone" (click)="updateStatus(task)">
-                        </div>
                         <div class="col-xs-2">
-                            <input type="text" value={{task.title}} >
-                        </div>
-                        <div class="col-xs-4">
-                            <input type="text" value={{task.detail}} >
+                            <span>Title</span>
                         </div>
                         <div class="col-xs-3">
-                            <input type="text" value= {{task.implementer}}>
+                            <span>Created at:</span>
+                        </div>
+                        <div class="col-xs-3">
+                            <span>Deadline:</span>
+                        </div>
+                        <div class="col-xs-1">
+                            <span>Status:</span>
+                        </div>
+                    </div>
+                    <div *ngFor='let task of tasks'>
+                        <br><br>
+                        <div class="col-xs-2">
+                            <span><a [routerLink]="['/detail', task._id]">{{task.title}}</a></span>
+                        </div>
+                        <div class="col-xs-3">
+                            <span>{{task.created_at}}</span>
+                        </div>
+                        <div class="col-xs-3">
+                            <span>{{task.deadline}}</span>
+                        </div>
+                        <div class="col-xs-1">
+                            <span>{{task.status}}</span>
                         </div>
                         <div class="col-xs-1">
                             <input type="button" (click)="deleteTask(task._id)" value="delete" class="btn btn-danger">

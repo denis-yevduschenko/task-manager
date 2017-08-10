@@ -3,15 +3,16 @@ var router = express.Router();
 
 var mongojs = require('mongojs');
 var db = mongojs('mongodb://zavitova:zavitushochka12@ds023373.mlab.com:23373/mytasklistzavitova', ['tasks']);
+const Task = require('../models/task');
 
 //Get all tasks
-router.get('/tasks', function (req, resp, next) {
-    db.tasks.find(function (err, tasks) {
+router.get('/tasks', function (req, res, next) {
+    Task.find(function (err, tasks) {
         if (err) {
             resp.send(err);
         }
 
-        resp.json(tasks);
+        res.json(tasks);
     })
 
 });
@@ -32,33 +33,33 @@ router.get('/tasks/:id', function (req, resp, next) {
 
 
 //Save Task
-router.post('/task', function (req, resp, next) {
+router.post('/task', function (req, res, next) {
     var task = req.body;
-    if (!task.title || !(task.isDone + '')) {
+    let newTask = new Task(task);
+    if (!newTask) {
         res.status(400);
         res.json({
             "error": "Bad Data"
         });
     } else {
-        db.tasks.save(task, function (err, task) {
+        newTask.save(task, function (err, task) {
             if (err) {
-                resp.send(err);
+                res.send(err);
             }
-            resp.json(task);
+            res.json(task);
         })
     }
 });
 
 
 //Delete Task
-router.delete('/tasks/:id', function (req, resp, next) {
+router.delete('/tasks/:id', function (req, res, next) {
 
-    db.tasks.remove({ _id: mongojs.ObjectId(req.params.id) }, function (err, task) {
+    Task.remove({ _id: Number(req.params.id) }, function (err, task) {
         if (err) {
-            resp.send(err);
+            res.send(err);
         }
-
-        resp.json(task);
+        res.json(task);
     })
 
 });
@@ -102,8 +103,8 @@ router.put('/tasks/:id', function (req, resp, next) {
 });
 
 // Get Concrete Task
-let Task = require('../models/task');
 router.get('/task/:id', function (req, res, next) {
+    let id = Number(req.params.id);
     Task.aggregate([
             {
                 $lookup:{
@@ -122,7 +123,7 @@ router.get('/task/:id', function (req, res, next) {
                 }
             },
             {
-                $match: { _id : 1 }
+                $match: { _id : id }
             },
             {
                 $unwind: "$author_obj"

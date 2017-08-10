@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {Task} from "../../models/Task";
+import {Task} from "../../../../models/Task";
 import 'rxjs/add/operator/switchMap';
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {UserService} from "../../services/user.services";

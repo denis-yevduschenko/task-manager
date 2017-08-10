@@ -25,6 +25,7 @@ export class LoginComponent {
 
         this.userService.auth(data).subscribe(user => {
             let localUser = {
+                "_id": user._id,
                 "name": user.name,
                 "token": user.auth_token,
                 "email": user.email

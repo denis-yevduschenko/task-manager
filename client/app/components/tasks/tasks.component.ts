@@ -1,6 +1,6 @@
-import { Component, EventEmitter } from '@angular/core';
+import { Component, OnOnit } from '@angular/core';
 import { TaskService } from '../../services/task.services';
-import { Task } from '../../models/Task';
+import { Task } from '../../../../models/Task';
 import {UserService} from "../../services/user.services";
 import {Router} from "@angular/router";
 
@@ -9,7 +9,7 @@ import {Router} from "@angular/router";
     selector: 'tasks',
     templateUrl: 'tasks.component.html',
 })
-export class TasksComponent {
+export class TasksComponent implements OnOnit{
     tasks: Task[];
     title: string;
 
@@ -33,26 +33,34 @@ export class TasksComponent {
             })
     }
 
-
-
     addTask(event: any) {
         event.preventDefault();
         console.log(this.title);
+        let user;
 
-        var newTask: Task = {
-            _id: null,
-            title: this.title,
-            detail: this.detail,
-            implementer: this.implementer,
-            isDone: false
+        if (localStorage.getItem("user")) {
+            user = JSON.parse(localStorage.getItem("user"));
         }
+
+        let newTask: Task = {
+            title: this.title,
+            description: this.description,
+            author: user._id,
+            assignee: this.assignee,
+            deadline: this.deadline,
+            sub_task: this.sub_task,
+            created_at: new Date(),
+            status: false
+        };
 
         this.taskService.addTask(newTask)
             .subscribe(savedTask => {
                 this.tasks.push(savedTask);
-                this.title = '';
-                this.detail = '';
-                this.implementer = '';
+                this.title = "";
+                this.description = "";
+                this.assignee = "";
+                this.deadline = "";
+                this.sub_task = "";
                 this.taskService.tasksUpdated.emit(this.tasks);
             },
             error => {
@@ -60,6 +68,7 @@ export class TasksComponent {
             })
 
     }
+
     deleteTask(id: any) {
         var tasks = this.tasks;
         this.taskService.deleteTask(id).subscribe(data => {
@@ -86,7 +95,6 @@ export class TasksComponent {
         this.taskService
             .getTasks()
             .subscribe(tasks => {
-                console.log(tasks);
                 this.tasks = tasks;
                 this.taskService.tasksUpdated.emit(this.tasks);
             },
